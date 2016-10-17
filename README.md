@@ -1,5 +1,14 @@
 # A Hitchhiker's Guide to the Cloud Native Stack
 
+## Prerequisites
+ * Notebook with at least 8 GB RAM
+ * Windows 10, Mac OS X / macOS, Linux
+ * current Vagrant version installed
+ * current Docker version installed
+ * JDK 8
+ * current Gradle version
+ * current intelliJ version (trial version is OK) 
+
 ## Module 1: Microservices
 ### Theory
  * Introduction to Cloud Native and the available Cloud Native Stacks
