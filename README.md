@@ -5,6 +5,7 @@
  * Introduction to Cloud Native and the available Cloud Native Stacks
  * Microservices - an architect's perspective: Ops components
  * Introduction to Spring Boot
+ 
 ### Practice
  * Setup training environment
  * Implementing a Spring Boot Twitter Microservice
@@ -13,6 +14,7 @@
 ### Theory
  * Docker basics
  * Writing Dockerfiles
+ 
 ### Practice
  * Writing a Dockerfile for our Twitter Microservice
  * Building and running the image locally 
@@ -22,6 +24,7 @@
 ### Theory
  * Microservice infrastructure (incl. landscape): API Gateway, Service Discovery, Configuration, ...
  * Introduction to Docker Compose
+ 
 ### Practice
  * Enhance the Twitter Microservice with Consul (service discovery + configuration)
  * Write Docker Compose file
@@ -29,6 +32,7 @@
 ## Module 4: Running on DC/OS
 ### Theory
  * Introduction and Overview DC/OS
+ 
 ### Practice
  * Writing Marathon specification
  * Deploy to DC/OS cluster with CLI (incl. setup CLI)
