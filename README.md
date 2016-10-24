@@ -18,7 +18,7 @@
  * Setup training environment
  * Implementing a Spring Boot Twitter Microservice
  
-## Module 2: Dockerization
+## Module 2: Containerization
 ### Theory
  * Docker basics
  * Writing Dockerfiles
@@ -37,7 +37,7 @@
  * Enhance the Twitter Microservice with Consul (service discovery + configuration)
  * Write Docker Compose file
  
-## Module 4: Running on DC/OS
+## Module 4: Orchestration
 ### Theory
  * Introduction and Overview DC/OS
  
