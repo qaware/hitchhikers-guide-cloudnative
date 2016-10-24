@@ -1,5 +1,4 @@
-# A Hitchhiker's Guide to the Cloud Native Stack
-
+<img src="https://raw.githubusercontent.com/qaware/hitchhikers-guide-cloudnative/master/logo.png" width="600px">
 ## Prerequisites
  * Notebook with at least 8 GB RAM
  * Windows 10, Mac OS X / macOS, Linux
