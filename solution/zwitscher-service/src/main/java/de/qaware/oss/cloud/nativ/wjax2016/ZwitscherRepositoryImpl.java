@@ -30,7 +30,6 @@ public class ZwitscherRepositoryImpl implements ZwitscherRepository {
     @HystrixCommand(fallbackMethod = "noResults")
     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
     public Collection<String> search(String q, int pageSize) {
-        // search and map results
         SearchResults results = twitter.searchOperations().search(q, pageSize);
         return results.getTweets().stream()
                 .map(Tweet::getUnmodifiedText)
@@ -39,6 +38,6 @@ public class ZwitscherRepositoryImpl implements ZwitscherRepository {
 
     @SuppressWarnings("unused")
     protected Collection<String> noResults(String q, int pageSize) {
-        return Collections.singleton("Error getting tweets stream, using fallback.");
+        return Collections.singleton("Error getting Tweet stream. Using fallback.");
     }
 }
