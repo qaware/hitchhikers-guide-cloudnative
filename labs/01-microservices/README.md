@@ -18,7 +18,7 @@ done, press the `Download` button. Extract and copy the downloaded archive to
 your workspace directory.
 
 Now you can import the Gradle project into your IDE. You should also be able to
-compile the project without any errors on the command line using:
+compile and run the project without any errors on the command line using:
 ```bash
-$ ./gradlew build
+$ ./gradlew bootRun
 ```
