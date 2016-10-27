@@ -39,3 +39,53 @@ public class ZwitscherController {
     }
 }
 ```
+
+## Step 03: Implement Twitter social connectivity
+
+Next we will us the Spring Cloud Twitter library to query for a number of tweets and return these
+via our Zwitscher REST endpoint. We will create a `ZwitscherRepository` as abstraction to access
+the Twitter API, configure the Twitter beans and use the repository in our REST endpoint.
+
+1. Create the Zwitscher respository
+```java
+@Repository
+public class ZwitscherRepositoryImpl implements ZwitscherRepository {
+
+    private final Twitter twitter;
+
+    @Autowired
+    public ZwitscherRepositoryImpl(Twitter twitter) {
+        this.twitter = twitter;
+    }
+
+    @Override
+    public Collection<String> search(String q, int pageSize) {
+        // search and map results
+        SearchResults results = twitter.searchOperations().search(q, pageSize);
+        return results.getTweets().stream()
+                .map(Tweet::getUnmodifiedText)
+                .collect(toList());
+    }
+}
+```
+
+2. Create the Twitter bean configuration
+```java
+@Configuration
+public class ZwitscherConfiguration {
+    @Bean
+    public Twitter twitter(final @Value("${spring.social.twitter.appId}") String appId,
+                           final @Value("${spring.social.twitter.appSecret}") String appSecret) {
+        return new TwitterTemplate(appId, appSecret);
+    }
+}
+```
+
+3. Wire and use the repository
+```java
+@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public HttpEntity<Collection<String>> tweets() {
+    Collection<String> tweets = repository.search("cloudnativenerd", 23);
+    return new ResponseEntity<>(tweets, HttpStatus.OK);
+}
+```
