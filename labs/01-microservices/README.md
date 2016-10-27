@@ -46,7 +46,8 @@ Next we will us the Spring Cloud Twitter library to query for a number of tweets
 via our Zwitscher REST endpoint. We will create a `ZwitscherRepository` as abstraction to access
 the Twitter API, configure the Twitter beans and use the repository in our REST endpoint.
 
-1. Create the Zwitscher respository
+* Create the Zwitscher respository
+
 ```java
 @Repository
 public class ZwitscherRepositoryImpl implements ZwitscherRepository {
@@ -69,7 +70,8 @@ public class ZwitscherRepositoryImpl implements ZwitscherRepository {
 }
 ```
 
-2. Create the Twitter bean configuration
+* Create the Twitter bean configuration
+
 ```java
 @Configuration
 public class ZwitscherConfiguration {
@@ -81,7 +83,8 @@ public class ZwitscherConfiguration {
 }
 ```
 
-3. Wire and use the repository
+* Wire and use the repository
+
 ```java
 @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public HttpEntity<Collection<String>> tweets() {
@@ -89,3 +92,33 @@ public HttpEntity<Collection<String>> tweets() {
     return new ResponseEntity<>(tweets, HttpStatus.OK);
 }
 ```
+
+## Step 04: Add Hystrix circuit breaker
+
+Since the Twitter API might be slow or even not be reachable, we need to enhance our Zwitscher repository
+with basic circuit-breaker capabilities to stay responsive in the face of failure.
+
+Firsrt we simply need to apply the `@EnableCircuitBreaker` annotation to our Spring Boot application class.
+This will enable Hystrix.
+
+Then we can enhance our repository implementation to wrap the call to the search method in a Hystrix command.
+We also want to specify a fallback method in case the call takes too long.
+
+```java
+@Override
+@HystrixCommand(fallbackMethod = "noResults")
+@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+public Collection<String> search(String q, int pageSize) {
+    SearchResults results = twitter.searchOperations().search(q, pageSize);
+    return results.getTweets().stream()
+            .map(Tweet::getUnmodifiedText)
+            .collect(toList());
+}
+
+@SuppressWarnings("unused")
+protected Collection<String> noResults(String q, int pageSize) {
+    return Collections.singleton("Error getting Tweet stream. Using fallback.");
+}
+```
+
+Play around with the execution timeout property and see how it behaves if you set it to a really low value.
