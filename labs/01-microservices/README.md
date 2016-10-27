@@ -22,3 +22,20 @@ compile and run the project without any errors on the command line using:
 ```bash
 $ ./gradlew bootRun
 ```
+
+## Step 02: Implement Zwitscher REST Endpoint
+
+Next we implement a basic Spring based REST endpoint to return a list of Tweets upon a simple
+`GET /tweets` request. For now simply return a dummy string. As a bonus, implement a simple
+JUnit test to check for the correct behaviour.
+
+```java
+@RestController
+@RequestMapping("/tweets")
+public class ZwitscherController {
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public HttpEntity<Collection<String>> tweets() {
+        return new ResponseEntity<>(Collections.singleton("Hello World."), HttpStatus.OK);
+    }
+}
+```
