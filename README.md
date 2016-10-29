@@ -41,6 +41,8 @@
 ## Module 4: Orchestration
 ### Theory
  * Introduction and Overview DC/OS
+ * Networking Basics
+ * Persistent Storage Basics
 
 ### Practice
  * Writing Marathon specification
