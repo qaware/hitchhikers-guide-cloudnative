@@ -8,6 +8,8 @@
  * Current Docker Toolbox version installed (1.12.x or later)
  * Latest version of JDK 8
  * Latest version of IntelliJ (trial version is OK)
+ * (optional) Account for Docker Hub
+
 
 ## Module 1: Microservices
 ### Theory
