@@ -93,3 +93,20 @@ $ docker start zwitscher-service
 ```
 
 ## Step 03: Push image to remote Docker registry
+
+The final step is to tag and push the final Docker image to a remote Docker registry such as Docker Hub.
+First, we need to tag image with the remote registry URL.
+
+```bash
+$ docker tag zwitscher-service:1.0.0 <username>/zwitscher-service:1.0.0
+$ docker tag zwitscher-service:1.0.0 <username>/zwitscher-service:latest
+```
+
+Next, we need to login at the remote Docker registry and then push the image to there. Once this is
+done, have a look at Docker Hub.
+
+```bash
+$ docker login -e <email> -u <username> -p <password>
+$ docker push <username>/zwitscher-service
+```
+
