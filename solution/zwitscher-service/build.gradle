@@ -6,16 +6,21 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.3'
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: 'com.bmuschko.docker-remote-api'
+apply plugin: 'idea'
+
+version = '1.0.0'
 
 jar {
 	baseName = 'zwitscher-service'
-	version = '1.0.0'
+	version = "$version"
 }
 
 sourceCompatibility = 1.8
@@ -26,12 +31,12 @@ repositories {
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.cloud:spring-cloud-starter-hystrix')
-	compile('org.springframework.boot:spring-boot-starter-social-twitter')
-	compile('org.springframework.boot:spring-boot-starter-web')
+	compile 'org.springframework.boot:spring-boot-starter-actuator'
+	compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
+	compile 'org.springframework.boot:spring-boot-starter-social-twitter'
+	compile 'org.springframework.boot:spring-boot-starter-web'
 
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
@@ -42,4 +47,28 @@ dependencyManagement {
 
 springBoot {
 	executable = true
+}
+
+docker {
+    url = System.env.DOCKER_HOST?.replace('tcp', 'https') ?: 'https://192.168.99.100:2376'
+    certPath = file("${System.getProperty('user.home')}/.docker/machine/machines/default")
+}
+
+import com.bmuschko.gradle.docker.tasks.DockerInfo
+import com.bmuschko.gradle.docker.tasks.DockerVersion
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
+
+task dockerInfo(type: DockerInfo, description: 'Display Docker info') {}
+task dockerVersion(type: DockerVersion, description: 'Display Docker version') {}
+
+task buildDockerImage(type: DockerBuildImage, description: 'Build Docker image') {
+    inputDir = projectDir
+    noCache = false
+    remove = true
+    tag = "$project.name:$version"
+}
+
+task removeDockerImage(type: DockerRemoveImage, description: 'Remove Docker image') {
+    imageId = "$project.name:$version"
 }
