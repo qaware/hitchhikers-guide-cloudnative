@@ -16,8 +16,10 @@ public class ZwitscherControllerTest {
     public void tweets() throws Exception {
         ZwitscherRepository repository = mock(ZwitscherRepository.class);
         ZwitscherController controller = new ZwitscherController(repository);
+        controller.setQuery("cloudnativenerd");
+        controller.setPageSize(42);
 
-        when(repository.search("cloudnativenerd", 23)).thenReturn(Collections.singleton("Hello Test."));
+        when(repository.search("cloudnativenerd", 42)).thenReturn(Collections.singleton("Hello Test."));
 
         HttpEntity<Collection<String>> tweets = controller.tweets();
         assertFalse(tweets.getBody().isEmpty());

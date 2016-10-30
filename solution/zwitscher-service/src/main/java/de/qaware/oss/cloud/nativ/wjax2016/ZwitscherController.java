@@ -1,6 +1,8 @@
 package de.qaware.oss.cloud.nativ.wjax2016;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,9 +18,13 @@ import java.util.Collection;
  */
 @RestController
 @RequestMapping("/tweets")
+@RefreshScope
 public class ZwitscherController {
 
     private final ZwitscherRepository repository;
+
+    private String query;
+    private int pageSize;
 
     @Autowired
     public ZwitscherController(ZwitscherRepository repository) {
@@ -27,7 +33,17 @@ public class ZwitscherController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public HttpEntity<Collection<String>> tweets() {
-        Collection<String> tweets = repository.search("cloudnativenerd", 23);
+        Collection<String> tweets = repository.search(query, pageSize);
         return new ResponseEntity<>(tweets, HttpStatus.OK);
+    }
+
+    @Value("${tweet.query:cloudnativenerd}")
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    @Value("${tweet.pageSize:42}")
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 }

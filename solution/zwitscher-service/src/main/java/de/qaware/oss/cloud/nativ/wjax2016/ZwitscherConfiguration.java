@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.impl.TwitterTemplate;
 
+/**
+ * Custom configuration for the required Spring Social Twitter beans.
+ */
 @Configuration
 public class ZwitscherConfiguration {
     @Bean
