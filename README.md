@@ -38,6 +38,7 @@
 
 ### Practice
  * Enhance the Twitter Microservice with Consul (service discovery + configuration)
+ * Enthance the Twitter Microservice with Traefik (edge server)
  * Write Docker Compose file
 
 ## Module 4: Orchestration
