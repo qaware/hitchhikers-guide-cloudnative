@@ -35,6 +35,7 @@ dependencies {
 	compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
 
     compile 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
+    compile 'org.springframework.cloud:spring-cloud-starter-consul-config'
 
     compile 'org.springframework.boot:spring-boot-starter-social-twitter'
 	compile 'org.springframework.boot:spring-boot-starter-web'
