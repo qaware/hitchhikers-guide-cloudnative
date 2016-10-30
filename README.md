@@ -12,7 +12,7 @@
 
 ## Module 0: Introduction ([slides](slides/00-intro.pptx))
 
-## Module 1: Microservices  ([slides](slides/01-microservices.pptx))
+## Module 1: Microservices  ([slides](slides/01-microservices.pptx), [lab](labs/01-microservices))
 ### Theory
  * Introduction to Cloud Native and the available Cloud Native Stacks
  * Microservices - an architect's perspective: Ops components
@@ -22,7 +22,7 @@
  * Setup training environment
  * Implementing a Spring Boot Twitter Microservice
 
-## Module 2: Containerization  ([slides](slides/02-containerization.pptx))
+## Module 2: Containerization  ([slides](slides/02-containerization.pptx), [lab](labs/02-containerization))
 ### Theory
  * Docker basics
  * Writing Dockerfiles
@@ -32,7 +32,7 @@
  * Building and running the image locally
  * Push image to Docker Registry
 
-## Module 3: Composition  ([slides](slides/03-composition.pptx))
+## Module 3: Composition  ([slides](slides/03-composition.pptx), [lab](labs/03-composition))
 ### Theory
  * Microservice blueprint: API Gateway, Service Discovery, Configuration, ...
  * Introduction to Docker Compose
@@ -42,7 +42,7 @@
  * Enthance the Twitter Microservice with Traefik (edge server)
  * Write Docker Compose file
 
-## Module 4: Orchestration  ([slides](slides/04-orchestration.pptx))
+## Module 4: Orchestration  ([slides](slides/04-orchestration.pptx), [lab](labs/04-orchestration))
 ### Theory
  * Introduction and Overview DC/OS
  * Networking Basics
