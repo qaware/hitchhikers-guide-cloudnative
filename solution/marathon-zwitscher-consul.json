@@ -1,0 +1,41 @@
+{
+  "id": "zwitscher-consul",
+
+  "instances": 1,
+  "cpus": 1,
+  "mem": 256,
+  "disk": 0,
+
+  "container": {
+    "docker": {
+      "image": "consul",
+      "forcePullImage": true,
+      "privileged": false,
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "hostPort": 8500,
+          "containerPort": 8500,
+          "protocol": "tcp",
+          "servicePort": 8500
+        }
+      ]
+    }
+  },
+
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "portIndex": 0,
+      "path": "/v1/status/leader",
+      "intervalSeconds": 10,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+
+  "labels": {
+    "LAUNCHPAD_COLOR": "PURPLE",
+    "LAUNCHPAD_ROW": "0"
+  }
+}
