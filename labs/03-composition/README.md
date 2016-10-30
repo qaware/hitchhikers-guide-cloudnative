@@ -130,7 +130,47 @@ public class ZwitscherController {
 ```
 
 
-## Step 03: Add a Traeffic edge server
+## Step 03: Add a Traefik edge server
+
+In this step we will add a Traefik edge server as API gateway for our Zwitscher service.
+The following steps are required to get things up and running:
+
+* Start Traefik as Docker container using the CLI
+* Configure Traefik to access Consul for frontends and backends
+* Register Traefik specific tags in Consul
+
+Starting a Traefik instance via Docker is as usual pretty straight forward.
+Pull and run the offical Docker image in the background, make sure to expose port 8888
+as well as port 80.
+
+```bash
+$ docker pull traefik
+$ docker run -d --name zwitscher-traefik -p 8888:8888 -p 80:80 -v $PWD/traefik.toml:/etc/traefik/traefik.toml traefik
+
+$ docker stop zwitscher-traefik
+$ docker start zwitscher-traefik
+```
+
+Next, we need to customize the Traefik default behaviour. We want to serve the Web UI on port 8888 and we
+want to obtain the frontend and backend configuration dynamically from Consul. Create a file called `traefik.toml`
+with the following content and pass it as Docker volume to the container:
+
+```toml
+[web]
+address = ":8888"
+
+[consulCatalog]
+endpoint = "192.168.99.100:8500"
+domain = "consul.localhost"
+prefix = "traefik"
+```
+
+Furthermore, we can customize how Traefik will route the incoming requests to the registered services by
+specifying additional tags during service registration. This is done via the `application.properties`.
+
+```
+spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Path:/tweets,traefik.tags=api
+```
 
 
 ## Step 04: Write a Docker Compose file
@@ -140,3 +180,6 @@ public class ZwitscherController {
 
 * https://hub.docker.com/_/consul/
 * https://cloud.spring.io/spring-cloud-consul/
+* https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html
+* https://hub.docker.com/r/_/traefik/
+* https://docs.traefik.io/toml/#consul-catalog-backend
