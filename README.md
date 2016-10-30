@@ -33,7 +33,7 @@
 
 ## Module 3: Composition
 ### Theory
- * Microservice infrastructure (incl. landscape): API Gateway, Service Discovery, Configuration, ...
+ * Microservice blueprint: API Gateway, Service Discovery, Configuration, ...
  * Introduction to Docker Compose
 
 ### Practice
@@ -50,8 +50,10 @@
 ### Practice
  * Writing Marathon specification
  * Deploy to DC/OS cluster with CLI (incl. setup CLI) and from Gradle
- * Writing Kubernetes specification
- * Deploy to Kubernetes cluster with CLI and from Gradle
+ 
+## Module 5: Explore
+ * Overview of other platforms like Kubernetes, OpenShift and Kontena
+ * Play hard with the other platforms - how to get started
 
 ## License
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">QAware Cloud Native Bootcamp</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution 4.0 International License</a>.
