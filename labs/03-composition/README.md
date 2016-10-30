@@ -175,6 +175,24 @@ spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Pat
 
 ## Step 04: Write a Docker Compose file
 
+As the final step we will be using Docker Compose to start and wire all three Docker containers
+(Consul, Traefik, Zwitscher Service). For this create a file called `docker-compose.yml` and add
+the definitions for the required building blocks.
+
+The solution provides a Docker compose file for v1 and v2. Choose either, even though v2 probably
+is the recommended format now.
+
+```bash
+$ docker-compose -p zwitscher -f docker-compose_v1.yml up -d
+
+$ docker-compose -p zwitscher -f docker-compose_v2.yml up -d
+
+$ docker-compose -p zwitscher -f docker-compose_v2.yml ps
+$ docker-compose -p zwitscher -f docker-compose_v2.yml logs -f
+
+$ docker-compose -p zwitscher -f docker-compose_v2.yml down
+```
+
 
 ## References
 
@@ -183,3 +201,4 @@ spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Pat
 * https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html
 * https://hub.docker.com/r/_/traefik/
 * https://docs.traefik.io/toml/#consul-catalog-backend
+* https://docs.docker.com/compose/compose-file/
