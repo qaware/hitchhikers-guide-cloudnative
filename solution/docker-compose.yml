@@ -1,0 +1,30 @@
+consul:
+  image: consul
+  hostname: zwitscher-consul
+  ports:
+    - "8400:8400"
+    - "8500:8500"
+
+traefik:
+  image: traefik
+  hostname: zwitscher-traefik
+  volumes:
+    - ./traefik.toml:/etc/traefik/traefik.toml
+  links:
+    - consul
+    - zwitscher
+  ports:
+    - "8888:8888"
+    - "80:80"
+
+zwitscher:
+  image: "zwitscher-service:1.0.0"
+  hostname: zwitscher-service
+  environment:
+      CONSUL_HOST: zwitscher-consul
+      TWITTER_APP_ID: ...
+      TWITTER_APP_SECRET: ...
+  links:
+    - consul
+  ports:
+    - "8080:8080"
