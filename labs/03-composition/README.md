@@ -49,8 +49,8 @@ from the Actuator dependency. The final application properties might look someth
 ```
 spring.application.name=zwitscher-service
 info.name=Zwitscher Service (W-JAX 2016)
-        
-# all actuator endpoints are below /admin 
+
+# all actuator endpoints are below /admin
 management.context-path=/admin
 
 # specify Consul host and port
@@ -65,7 +65,69 @@ spring.cloud.consul.discovery.health-check-path=${management.context-path}/healt
 spring.cloud.consul.discovery.health-check-interval=5s
 ```
 
+
 ## Step 02: Enhance the Twitter service with Consul (Configuration)
+
+In this step we want to enhance the service so that it uses Consul as configuration server
+to obtain the values for the Tweets query. The following steps are required to get things
+up and running:
+
+* Add the Consul Configuration Starter dependency
+* Enable the discovery client mechanism and configure the relevant properties
+* Change our implementation to use properties instead of hard-coded values
+
+First we will add the required Consul Config Starter dependency to the Gradle build file. Once
+done, we need to add a `src/main/resources/bootstrap.properties` file to configure the mechanism.
+
+```groovy
+dependencies {
+    // ... the other dependencies ...
+    compile 'org.springframework.cloud:spring-cloud-starter-consul-config'
+}
+```
+
+First, move the consul server configuration properties from `application.properties` to the
+newly created `bootstrap.properties` file. Add further properties to configure the desired
+behaviour of the configuration mechanism:
+
+* Enable the configuration mechanism and configure prefix and default context.
+* Disable fail-fast behaviour, so that the application will still start even if the Consul
+  server is not running.
+* Store properties in Consul as blob using a property syntax, opposed to having a
+  key-value pair per property.
+
+Use the Consul UI and create a new key/value entry for the key `configuration/zwitscher-service/data`
+that contains the following data:
+
+```
+tweet.query=cloudnativenerd
+tweet.pageSize=42
+```
+
+Now modify the `ZwitscherController` and inject and use these properties instead of the statically
+configured values. You may also annotate the class using `@RefreshScope`. Change the configuration
+in Consul while running the application, query the `/tweets` endpoints and see what happens.
+
+```java
+@RestController
+@RequestMapping("/tweets")
+@RefreshScope
+public class ZwitscherController {
+
+    private String query;
+    private int pageSize;
+
+    @Value("${tweet.query:cloudnativenerd}")
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    @Value("${tweet.pageSize:42}")
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+}
+```
 
 
 ## Step 03: Add a Traeffic edge server
