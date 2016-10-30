@@ -1,0 +1,48 @@
+{
+  "id": "zwitscher-service",
+
+  "instances": 1,
+  "cpus": 0.5,
+  "mem": 256,
+
+  "cmd": "java -Xmx128m -Dserver.port=$PORT0 -Dspring.cloud.consul.discovery.ip-address=$HOST -jar /app/zwitscher-service/zwitscher-service.jar",
+
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "lreimer/zwitscher-service:1.0.0",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 0,
+          "hostPort": 0,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  },
+
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "path": "/admin/health",
+      "intervalSeconds": 10,
+      "portIndex": 0,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+
+  "dependencies": [
+    "zwitscher-consul"
+  ],
+
+  "env": {
+    "CONSUL_HOST": "zwitscher-consul.marathon.mesos"
+  },
+
+  "labels": {
+    "LAUNCHPAD_COLOR": "GREEN",
+    "LAUNCHPAD_ROW": "1"
+  }
+}
