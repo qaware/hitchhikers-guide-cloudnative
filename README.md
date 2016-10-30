@@ -10,8 +10,9 @@
  * Latest version of IntelliJ (trial version is OK)
  * (optional) Account for Docker Hub
 
+## Module 0: Introduction ([slides](slides/00-intro.pptx))
 
-## Module 1: Microservices
+## Module 1: Microservices  ([slides](slides/01-microservices.pptx))
 ### Theory
  * Introduction to Cloud Native and the available Cloud Native Stacks
  * Microservices - an architect's perspective: Ops components
@@ -21,7 +22,7 @@
  * Setup training environment
  * Implementing a Spring Boot Twitter Microservice
 
-## Module 2: Containerization
+## Module 2: Containerization  ([slides](slides/02-containerization.pptx))
 ### Theory
  * Docker basics
  * Writing Dockerfiles
@@ -31,7 +32,7 @@
  * Building and running the image locally
  * Push image to Docker Registry
 
-## Module 3: Composition
+## Module 3: Composition  ([slides](slides/03-composition.pptx))
 ### Theory
  * Microservice blueprint: API Gateway, Service Discovery, Configuration, ...
  * Introduction to Docker Compose
@@ -41,7 +42,7 @@
  * Enthance the Twitter Microservice with Traefik (edge server)
  * Write Docker Compose file
 
-## Module 4: Orchestration
+## Module 4: Orchestration  ([slides](slides/04-orchestration.pptx))
 ### Theory
  * Introduction and Overview DC/OS
  * Networking Basics
@@ -51,7 +52,7 @@
  * Writing Marathon specification
  * Deploy to DC/OS cluster with CLI (incl. setup CLI) and from Gradle
  
-## Module 5: Explore
+## Module 5: Explore  ([slides](slides/05-summary.pptx))
  * Sneak preview of other platforms like Kubernetes, OpenShift, Kontena and Gestalt
  * Play hard with the other platforms - how to get started
 
