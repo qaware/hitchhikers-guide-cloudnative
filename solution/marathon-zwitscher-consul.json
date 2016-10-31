@@ -6,22 +6,20 @@
   "mem": 256,
   "disk": 0,
 
+  "cmd": "consul agent -server -ui -advertise=$HOST -data-dir=/tmp/consul -bootstrap-expect=1 -node=consul-server -client=0.0.0.0",
+
   "container": {
     "docker": {
       "image": "consul",
-      "forcePullImage": true,
+      "forcePullImage": false,
       "privileged": false,
-      "network": "BRIDGE",
-      "portMappings": [
-        {
-          "hostPort": 8500,
-          "containerPort": 8500,
-          "protocol": "tcp",
-          "servicePort": 8500
-        }
-      ]
+      "network": "HOST",
+      "ports": [8300, 8301, 8302, 8400, 8500, 8600],
+      "requirePorts" : true
     }
   },
+
+  "constraints": [["hostname", "UNIQUE"]],
 
   "healthChecks": [
     {
