@@ -23,7 +23,7 @@ services:
     networks:
       - zwitscher-net
   zwitscher-service:
-    image: zwitscher-service:1.0.0
+    image: zwitscher-service:1.0.1
     environment:
       - CONSUL_HOST=zwitscher-consul
       - CONSUL_PORT=8500

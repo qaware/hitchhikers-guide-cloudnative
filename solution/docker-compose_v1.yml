@@ -19,7 +19,7 @@ traefik:
     - "80:80"
 
 zwitscher:
-  image: "zwitscher-service:1.0.0"
+  image: "zwitscher-service:1.0.1"
   hostname: zwitscher-service
   environment:
     CONSUL_HOST: "zwitscher-consul"
