@@ -21,10 +21,14 @@
 
   "constraints": [["hostname", "UNIQUE"]],
 
+  "env": {
+    "GOMAXPROCS": "10"
+  },
+
   "healthChecks": [
     {
       "protocol": "HTTP",
-      "portIndex": 0,
+      "port": 8500,
       "path": "/v1/status/leader",
       "intervalSeconds": 10,
       "timeoutSeconds": 10,
