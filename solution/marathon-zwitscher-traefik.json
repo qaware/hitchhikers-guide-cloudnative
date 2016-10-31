@@ -7,7 +7,9 @@
   "disk": 0,
 
   "args": [
-    "--web", "--web.address=:8888", "--consulcatalog", "--consulcatalog.watch=true", "--consulcatalog.endpoint=zwitscher-consul.marathon.mesos:8500"
+    "--web", "--web.address=:8888",
+    "--consulcatalog", "--consulcatalog.watch=true",
+    "--consulcatalog.endpoint=zwitscher-consul.marathon.mesos:8500"
   ],
 
   "container": {
