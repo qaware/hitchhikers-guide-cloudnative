@@ -3,7 +3,7 @@ MAINTAINER QAware GmbH <qaware-oss@qaware.de>
 
 RUN mkdir -p /app/zwitscher-service
 
-COPY build/libs/zwitscher-service-1.0.1.jar /app/zwitscher-service/zwitscher-service.jar
+COPY build/libs/zwitscher-service-1.0.0.jar /app/zwitscher-service/zwitscher-service.jar
 COPY src/main/docker/zwitscher-service.conf /app/zwitscher-service/
 
 EXPOSE 8080

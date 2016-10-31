@@ -19,7 +19,7 @@ apply plugin: 'com.bmuschko.docker-remote-api'
 apply plugin: 'idea'
 apply plugin: 'de.qaware.cloud.deployer'
 
-version = '1.0.1'
+version = '1.0.0'
 
 jar {
     baseName = 'zwitscher-service'
