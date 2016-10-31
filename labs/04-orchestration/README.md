@@ -74,6 +74,49 @@ details of those two specs as well.
 
 ## Step 02: Deploy to DC/OS cluster
 
+Deployment time!!! In this step we will learn how to manage the DC/OS cluster and marathon as
+well as deploy applications using the CLI and optionally Gradle.
+
+Make sure the `dcos` CLI tool is available on the PATH. If not, browse the DC/OS demo cluster
+URL and follow the installation instructions. Once the CLI is installed, you first need to
+login to the demo cluster using the following command:
+
+```bash
+$ dcos auth login
+```
+
+This will display a URL in the shell. Open this URL in a browser window, authenticate and then
+copy the displayed access token into the shell. You should see a successful login.
+
+Now it is time to explore the DC/OS cluster. You an always use the `--help` flag to get a list
+of the available commands and options, e.g.
+
+```bash
+$ dcos
+$ dcos node
+$ dcos marathon
+$ dcos marathon app list
+```
+
+Next we will deploy the Marathon specification for our Zwitscher service we created in the previous step. The Consul and Traefik specs should have already been deployed.
+
+```bash
+$ dcos marathon app add < marathon-zwitscher-service.json
+$ dcos marathon app show zwitscher-service
+```
+
+Open the DC/OS Web UI and follow the deployment of the service. Browser the service and
+have a look at the details and the log outputs. Once the service is marked as healthy,
+have a look at the Consol UI. You should now see a new instance of the service appear.
+Also have a look at the Traefik UI, there should be a new instance available as well.
+
+If everything is OK it is time to scale the service. Either use the **Scale** button in
+the Web UI, or issue an update command for our Zwitscher service and increase the instance
+count to the desired value. Please don't go mad here, it's a shared cluster!
+
+```bash
+$ dcos marathon app update zwitscher-service instances=2
+```
 
 
 ## References
