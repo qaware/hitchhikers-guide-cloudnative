@@ -118,6 +118,23 @@ count to the desired value. Please don't go mad here, it's a shared cluster!
 $ dcos marathon app update zwitscher-service instances=2
 ```
 
+Finally, we will be using the Gradle Cloud Deployer plugin to control the deployment
+of the Zwitscher service using our build tool. Add the plugin to your `build.gradle`
+file and add the required configuration for Marathon.
+
+```groovy
+deployer {
+    marathon {
+        id = "marathon-zwitscher-service"
+        baseUrl = "http://147.75.100.195"
+        strategy = "REPLACE"
+        auth {
+            token = dcosAuthToken()
+        }
+        files = [file("../marathon-zwitscher-service.json")]
+    }
+}
+```
 
 ## References
 
@@ -126,3 +143,4 @@ $ dcos marathon app update zwitscher-service instances=2
 * https://mesosphere.github.io/marathon/docs/native-docker.html
 * https://mesosphere.github.io/marathon/docs/ports.html
 * https://mesosphere.github.io/marathon/docs/health-checks.html
+* https://github.com/qaware/gradle-cloud-deployer
