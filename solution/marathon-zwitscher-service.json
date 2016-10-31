@@ -42,7 +42,7 @@
   },
 
   "labels": {
-    "LAUNCHPAD_COLOR": "GREEN",
+    "LAUNCHPAD_COLOR": "LIGHT_GREEN",
     "LAUNCHPAD_ROW": "1"
   }
 }
