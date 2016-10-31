@@ -1,0 +1,62 @@
+{
+  "id": "zwitscher-traefik",
+
+  "instances": 1,
+  "cpus": 1,
+  "mem": 256,
+  "disk": 0,
+
+  "args": [
+    "--web", "--web.address=:8888", "--consulcatalog", "--consulcatalog.watch=true", "--consulcatalog.endpoint=zwitscher-consul.marathon.mesos:8500"
+  ],
+
+  "container": {
+    "docker": {
+      "image": "traefik",
+      "forcePullImage": false,
+      "privileged": false,
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "hostPort": 8888,
+          "containerPort": 8888,
+          "protocol": "tcp",
+          "servicePort": 0
+        },
+        {
+          "hostPort": 80,
+          "containerPort": 80,
+          "protocol": "tcp",
+          "servicePort": 0
+        }
+      ],
+      "requirePorts": true
+    }
+  },
+
+  "dependencies": [
+    "zwitscher-consul"
+  ],
+
+  "constraints": [["hostname", "UNIQUE"]],
+
+  "acceptedResourceRoles": [
+    "slave_public"
+  ],
+
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "port": 8888,
+      "path": "/health",
+      "intervalSeconds": 10,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+
+  "labels": {
+    "LAUNCHPAD_COLOR": "RED",
+    "LAUNCHPAD_ROW": "2"
+  }
+}
