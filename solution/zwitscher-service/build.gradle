@@ -1,56 +1,59 @@
 buildscript {
-	ext {
-		springBootVersion = '1.4.1.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
         classpath 'com.bmuschko:gradle-docker-plugin:3.0.3'
-	}
+        classpath 'gradle.plugin.de.qaware.cloud.deployer:deployer:0.9.1'
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
 apply plugin: 'com.bmuschko.docker-remote-api'
 apply plugin: 'idea'
+apply plugin: 'de.qaware.cloud.deployer'
 
-version = '1.0.0'
+version = '1.0.1'
 
 jar {
-	baseName = 'zwitscher-service'
-	version = "$version"
+    baseName = 'zwitscher-service'
+    version = "$version"
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-actuator'
-	compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
 
     compile 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
     compile 'org.springframework.cloud:spring-cloud-starter-consul-config'
 
     compile 'org.springframework.boot:spring-boot-starter-social-twitter'
-	compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-web'
 
-	testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR1"
-	}
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR1"
+    }
 }
 
 springBoot {
-	executable = true
+    executable = true
 }
 
 docker {
@@ -87,4 +90,16 @@ task startConsul(type: Exec, group: 'application', description: 'Start Consul co
 
 task stopConsul(type: Exec, group: 'application', description: 'Stop Consul container') {
     commandLine 'docker', 'stop', 'zwitscher-consul'
+}
+
+deployer {
+    marathon {
+        id = "marathon-zwitscher-service"
+        baseUrl = "http://147.75.100.195"
+        strategy = "REPLACE"
+        auth {
+            token = dcosAuthToken()
+        }
+        files = [file("../marathon-zwitscher-service.json")]
+    }
 }
