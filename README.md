@@ -10,6 +10,7 @@
  * Latest version of IntelliJ (trial version is OK)
  * Keepass tool to access the [credentials](accounts.kdbx) used in the labs: [Win](http://keepass.info), [macOS](http://mstarke.github.io/MacPass), [Linux](http://keepass.info/help/v2/setup.html#mono)
  * (optional) Account for Docker Hub
+ * Consider to attend our [Cloud Native Night Meetup](https://www.meetup.com/de-DE/cloud-native-muc/events/234936523/)
 
 ## Module 0: Introduction ([slides](slides/00-intro.pptx))
 
