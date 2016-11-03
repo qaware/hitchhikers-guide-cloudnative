@@ -58,6 +58,7 @@
   ],
 
   "labels": {
+    "LAUNCHPAD_ENABLE": "true",
     "LAUNCHPAD_COLOR": "RED",
     "LAUNCHPAD_ROW": "2"
   }
