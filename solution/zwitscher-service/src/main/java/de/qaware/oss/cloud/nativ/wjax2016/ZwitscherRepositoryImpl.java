@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Default implementation of our repository to search Twitter for tweets.
@@ -34,7 +35,7 @@ public class ZwitscherRepositoryImpl implements ZwitscherRepository {
         SearchResults results = twitter.searchOperations().search(q, pageSize);
         return results.getTweets().stream()
                 .map(Tweet::getUnmodifiedText)
-                .collect(toList());
+                .collect(toSet());
     }
 
     @SuppressWarnings("unused")
