@@ -24,20 +24,17 @@ See http://docs.spring.io/spring-boot/docs/current/reference/html/deployment-ins
 
 ## Step 02: Building and running the Docker image locally
 
-In this step we will build the Docker image and run it using the CLI as well as Gradle. Building the
-image is pretty straight forward. In the project directory issue the following command:
+In this step we will build the Docker image and run it using the CLI as well as Gradle. Building the image is pretty straight forward. In the project directory issue the following command:
 
 ```bash
-$ docker build -t zwitscher-service:1.0.0 .
+$ docker build -t zwitscher-service:1.0.0-$USER .
 
 $ docker images
 ```
 
-You should now see the newly built Docker image in the list of available images. You should also see the
-base image you have used in this list.
+You should now see the newly built Docker image in the list of available images. You should also see the base image you have used in this list.
 
-Building the Docker image every time you change something on the application can be cumbersome. What we need
-instead is the tight integration with our build tool, so that we can build the Docker image as part of our CI
+Building the Docker image every time you change something on the application can be cumbersome. What we need instead is the tight integration with our build tool, so that we can build the Docker image as part of our CI
 build cycle. We will be using the Gradle Docker plugin https://github.com/bmuschko/gradle-docker-plugin
 
 ```gradle
@@ -45,11 +42,11 @@ task buildDockerImage(type: DockerBuildImage) {
     inputDir = projectDir
     noCache = false
     remove = true
-    tag = "$project.name:$version"
+    tag = "$project.name:$version-${System.env['USER']}"
 }
 
 task removeDockerImage(type: DockerRemoveImage) {
-    imageId = "$project.name:$version"
+    imageId = "$project.name:$version-${System.env['USER']}"
 }
 ```
 
@@ -59,13 +56,13 @@ foreground as well as background. For the container to run successfully, you nee
 environment variables.
 
 ```bash
-$ docker run -it -p 8080:8080 zwitscher-service:1.0.0
+$ docker run -it -p 8080:8080 zwitscher-service:1.0.0-$USER
 
-$ docker run -it -e "TWITTER_APP_ID=..." -e "TWITTER_APP_SECRET=..." -p 8080:8080 zwitscher-service:1.0.0
+$ docker run -it -e "TWITTER_APP_ID=..." -e "TWITTER_APP_SECRET=..." -p 8080:8080 zwitscher-service:1.0.0-$USER
 
 $ docker run --name zwitscher-service -d \
         -e "TWITTER_APP_ID=..." -e "TWITTER_APP_SECRET=..." \
-        -p 8080:8080 zwitscher-service:1.0.0
+        -p 8080:8080 zwitscher-service:1.0.0-$USER
 
 $ docker ps
 $ docker logs -f zwitscher-service
@@ -85,7 +82,7 @@ $ docker run --name zwitscher-service \
         --cpu-quota 50000 --memory 256m --memory-swappiness 0  \
         --health-cmd='curl localhost:8080/health' --health-interval=5s \
         -d -e "TWITTER_APP_ID=..." -e "TWITTER_APP_SECRET=..." \
-        -p 8080:8080 zwitscher-service:1.0.0
+        -p 8080:8080 zwitscher-service:1.0.0-$USER
 
 $ docker ps
 $ docker logs -f zwitscher-service
@@ -97,17 +94,18 @@ $ docker start zwitscher-service
 ## Step 03: Push image to remote Docker registry
 
 The final step is to tag and push the final Docker image to a remote Docker registry such as Docker Hub.
-First, we need to tag image with the remote registry URL.
+First, we need to tag image with the remote registry URL and username. If you do not have an own account
+please use the provided `hitchhikersguide` account.
 
 ```bash
-$ docker tag zwitscher-service:1.0.0 <username>/zwitscher-service:1.0.0
-$ docker tag zwitscher-service:1.0.0 <username>/zwitscher-service:latest
+$ docker tag zwitscher-service:1.0.0-$USER hitchhikersguide/zwitscher-service:1.0.0-$USER
 ```
 
 Next, we need to login at the remote Docker registry and then push the image to there. Once this is
-done, have a look at Docker Hub.
+done, have a look at Docker Hub. Again, if you do not have an own account please use the provided
+`hitchhikersguide` account for this.
 
 ```bash
-$ docker login -e <email> -u <username> -p <password>
-$ docker push <username>/zwitscher-service
+$ docker login -u hitchhikersguide -p <password>
+$ docker push hitchhikersguide/zwitscher-service
 ```

@@ -18,7 +18,7 @@ The resulting JSON file might look something like the following:
 
 ```json
 {
-  "id": "zwitscher-service",
+  "id": "zwitscher-service-hitchhikersguide",
 
   "instances": 1,
   "cpus": 0.5,
@@ -61,6 +61,7 @@ The resulting JSON file might look something like the following:
   },
 
   "labels": {
+    "LAUNCHPAD_ENABLE": "true",
     "LAUNCHPAD_COLOR": "LIGHT_GREEN",
     "LAUNCHPAD_ROW": "1"
   }
@@ -103,7 +104,7 @@ $ dcos marathon app list
 Next we will deploy the Marathon specification for our Zwitscher service we created in the previous step. The Consul and Traefik specs should have already been deployed.
 
 ```bash
-$ dcos marathon app add < marathon-zwitscher-service.json
+$ dcos marathon app add marathon-zwitscher-service.json
 $ dcos marathon app show zwitscher-service
 ```
 

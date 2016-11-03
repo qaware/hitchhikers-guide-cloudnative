@@ -73,11 +73,11 @@ task buildDockerImage(type: DockerBuildImage, description: 'Build Docker image')
     inputDir = projectDir
     noCache = false
     remove = true
-    tag = "$project.name:$version"
+    tag = "$project.name:$version-${System.env['USER']}"
 }
 
 task removeDockerImage(type: DockerRemoveImage, description: 'Remove Docker image') {
-    imageId = "$project.name:$version"
+    imageId = "$project.name:$version-${System.env['USER']}"
 }
 
 task createConsul(type: Exec, group: 'application', description: 'Create Consul container') {
