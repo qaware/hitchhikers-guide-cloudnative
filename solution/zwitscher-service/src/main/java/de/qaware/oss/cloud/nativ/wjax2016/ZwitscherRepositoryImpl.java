@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.Collections;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Default implementation of our repository to search Twitter for tweets.
@@ -27,13 +27,14 @@ public class ZwitscherRepositoryImpl implements ZwitscherRepository {
     }
 
     @Override
-    @HystrixCommand(fallbackMethod = "noResults")
-    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+    @HystrixCommand(fallbackMethod = "noResults", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+    })
     public Collection<String> search(String q, int pageSize) {
         SearchResults results = twitter.searchOperations().search(q, pageSize);
         return results.getTweets().stream()
                 .map(Tweet::getUnmodifiedText)
-                .collect(toList());
+                .collect(toSet());
     }
 
     @SuppressWarnings("unused")
