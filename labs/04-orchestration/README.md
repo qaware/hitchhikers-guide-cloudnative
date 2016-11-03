@@ -1,6 +1,6 @@
 # Exercise 4: Orchestration
 
-<img src="illustration-04.png" alt="Exercise 4 Illustration" width="200"/>
+<img src="illustration-04.png" alt="Exercise 4 Illustration" width="500"/>
 
 ## Step 01: Writing a Marathon specification
 
