@@ -1,5 +1,7 @@
 # Exercise 4: Orchestration
 
+<img src="illustration-04.png" alt="Exercise 4 Illustration" style="width: 400px;"/>
+
 ## Step 01: Writing a Marathon specification
 
 To orchestrate our showcase we need to write the appropriate Marathon JSON specifications.

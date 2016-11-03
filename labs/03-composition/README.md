@@ -1,5 +1,7 @@
 # Exercise 3: Composition
 
+<img src="illustration-03.png" alt="Exercise 3 Illustration" style="width: 400px;"/>
+
 ## Step 01: Enhance the Twitter service with Consul (Service Discovery)
 
 In this step we will add basic Service Discovery capabilities using Consul so that our

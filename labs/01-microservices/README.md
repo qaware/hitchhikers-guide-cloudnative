@@ -1,5 +1,7 @@
 # Exercise 1: Microservices
 
+<img src="illustration-01.png" alt="Exercise 1 Illustration" style="width: 400px;"/>
+
 ## Step 01: Project Creation using Spring Initializr
 
 First, we are going to create our Twitter microservice using the Spring Initializr.

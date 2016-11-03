@@ -1,5 +1,7 @@
 # Exercise 2: Containerization
 
+<img src="illustration-02.png" alt="Exercise 2 Illustration" style="width: 400px;"/>
+
 ## Step 01: Writing a Dockerfile for our microservice
 
 Next, we need to containerize our micro service application. For this we have to write a `Dockerfile`
@@ -54,7 +56,7 @@ task removeDockerImage(type: DockerRemoveImage) {
 Once we have built the Docker image it is time to run the Zwitscher service in a container for th first time. Explore
 the `docker run` command for the various possibilities. First of all, it is possible to run the container in the
 foreground as well as background. For the container to run successfully, you need to pass the Twitter credentials as
-environment variables. 
+environment variables.
 
 ```bash
 $ docker run -it -p 8080:8080 zwitscher-service:1.0.0
@@ -109,4 +111,3 @@ done, have a look at Docker Hub.
 $ docker login -e <email> -u <username> -p <password>
 $ docker push <username>/zwitscher-service
 ```
-
