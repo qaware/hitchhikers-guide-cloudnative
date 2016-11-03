@@ -1,6 +1,6 @@
 # Exercise 1: Microservices
 
-<img src="illustration-01.png" alt="Exercise 1 Illustration" style="width: 400px;"/>
+<img src="illustration-01.png" alt="Exercise 1 Illustration" style="width: 200px;"/>
 
 ## Step 01: Project Creation using Spring Initializr
 
