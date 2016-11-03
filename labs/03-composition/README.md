@@ -1,6 +1,6 @@
 # Exercise 3: Composition
 
-<img src="illustration-03.png" alt="Exercise 3 Illustration" style="width: 200px;"/>
+<img src="illustration-03.png" alt="Exercise 3 Illustration" width="200"/>
 
 ## Step 01: Enhance the Twitter service with Consul (Service Discovery)
 

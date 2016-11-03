@@ -1,6 +1,6 @@
 # Exercise 2: Containerization
 
-<img src="illustration-02.png" alt="Exercise 2 Illustration" style="width: 200px;"/>
+<img src="illustration-02.png" alt="Exercise 2 Illustration" width="200"/>
 
 ## Step 01: Writing a Dockerfile for our microservice
 
