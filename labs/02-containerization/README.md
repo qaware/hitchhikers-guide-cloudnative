@@ -27,7 +27,7 @@ See http://docs.spring.io/spring-boot/docs/current/reference/html/deployment-ins
 In this step we will build the Docker image and run it using the CLI as well as Gradle. Building the image is pretty straight forward. In the project directory issue the following command:
 
 ```bash
-$ docker build -t zwitscher-service:1.0.0-$USER .
+$ docker build -t zwitscher-service:1.0.1-$USER .
 
 $ docker images
 ```
@@ -56,13 +56,13 @@ foreground as well as background. For the container to run successfully, you nee
 environment variables.
 
 ```bash
-$ docker run -it -p 8080:8080 zwitscher-service:1.0.0-$USER
+$ docker run -it -p 8080:8080 zwitscher-service:1.0.1-$USER
 
-$ docker run -it -e "TWITTER_APP_ID=..." -e "TWITTER_APP_SECRET=..." -p 8080:8080 zwitscher-service:1.0.0-$USER
+$ docker run -it -e "TWITTER_APP_ID=..." -e "TWITTER_APP_SECRET=..." -p 8080:8080 zwitscher-service:1.0.1-$USER
 
 $ docker run --name zwitscher-service -d \
         -e "TWITTER_APP_ID=..." -e "TWITTER_APP_SECRET=..." \
-        -p 8080:8080 zwitscher-service:1.0.0-$USER
+        -p 8080:8080 zwitscher-service:1.0.1-$USER
 
 $ docker ps
 $ docker logs -f zwitscher-service
@@ -82,7 +82,7 @@ $ docker run --name zwitscher-service \
         --cpu-quota 50000 --memory 256m --memory-swappiness 0  \
         --health-cmd='curl localhost:8080/health' --health-interval=5s \
         -d -e "TWITTER_APP_ID=..." -e "TWITTER_APP_SECRET=..." \
-        -p 8080:8080 zwitscher-service:1.0.0-$USER
+        -p 8080:8080 zwitscher-service:1.0.1-$USER
 
 $ docker ps
 $ docker logs -f zwitscher-service
@@ -98,7 +98,7 @@ First, we need to tag image with the remote registry URL and username. If you do
 please use the provided `hitchhikersguide` account.
 
 ```bash
-$ docker tag zwitscher-service:1.0.0-$USER hitchhikersguide/zwitscher-service:1.0.0-$USER
+$ docker tag zwitscher-service:1.0.1-$USER hitchhikersguide/zwitscher-service:1.0.1-$USER
 ```
 
 Next, we need to login at the remote Docker registry and then push the image to there. Once this is
