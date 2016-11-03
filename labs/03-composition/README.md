@@ -44,11 +44,12 @@ Per default, this mechanism expects the Consul server to run on `localhost:8500`
 server with Docker we need to change the Consul host to the external Docker IP address, e.g. `192.168.99.100`.
 We also need to configure a unique instance ID used when registering with Consul. We will also register
 a health check URL to be run at regular intervals with Consul. For this, we will use the `/health` endpoint
-from the Actuator dependency. The final application properties might look something like:
+from the Actuator dependency. The final application properties might look something like the
+following.
 
 ```
 spring.application.name=zwitscher-service
-info.name=Zwitscher Service (W-JAX 2016)
+info.name=Zwitscher Service (W-JAX 2016 Hitchhiker's Guide)
 
 # all actuator endpoints are below /admin
 management.context-path=/admin
@@ -58,12 +59,21 @@ spring.cloud.consul.host=192.168.99.100
 spring.cloud.consul.port=8500
 
 # assign a unique instance ID
-spring.cloud.consul.discovery.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+spring.cloud.consul.discovery.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}-hitchhikersguide
+
+# register IP address and heartbeats
+spring.cloud.consul.discovery.prefer-ip-address=true
+spring.cloud.consul.discovery.heartbeat.enabled=true
 
 # specify the health check path and interval
 spring.cloud.consul.discovery.health-check-path=${management.context-path}/health
 spring.cloud.consul.discovery.health-check-interval=5s
 ```
+
+Please make sure you assign something unique to the `info.name` property, so include
+your local username in here. Also replace the `hitchhikersguide` in the instance ID
+property with your username. This will make sure all instances are unique across all
+the tutorial participants.
 
 
 ## Step 02: Enhance the Twitter service with Consul (Configuration)
@@ -95,6 +105,28 @@ behaviour of the configuration mechanism:
   server is not running.
 * Store properties in Consul as blob using a property syntax, opposed to having a
   key-value pair per property.
+
+The `bootstrap.properties` file should now look something like this:
+
+```
+spring.application.name=zwitscher-service
+
+# specify Consul host and port
+spring.cloud.consul.host=${consul.host:192.168.99.100}
+spring.cloud.consul.port=${consul.port:8500}
+
+spring.cloud.consul.config.enabled=true
+spring.cloud.consul.config.prefix=configuration
+spring.cloud.consul.config.default-context=application
+
+# do not fail at startup if Consul is not there
+spring.cloud.consul.config.fail-fast=false
+
+# store properties as blob in property syntax
+# e.g. configuration/zwitscher-service/data
+spring.cloud.consul.config.format=properties
+spring.cloud.consul.config.data-key=data
+```
 
 Use the Consul UI and create a new key/value entry for the key `configuration/zwitscher-service/data`
 that contains the following data:
@@ -169,9 +201,11 @@ Furthermore, we can customize how Traefik will route the incoming requests to th
 specifying additional tags during service registration. This is done via the `application.properties`.
 
 ```
-spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Path:/tweets,traefik.tags=api
+spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/zwitscher-service,traefik.tags=api
 ```
 
+At this point you should now be able to get tweets via the edge server using a command
+like `curl 192.168.99.100/zwitscher-service/tweets`.
 
 ## Step 04: Write a Docker Compose file
 

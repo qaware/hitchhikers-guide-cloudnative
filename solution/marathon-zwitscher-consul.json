@@ -37,6 +37,7 @@
   ],
 
   "labels": {
+    "LAUNCHPAD_ENABLE": "true",
     "LAUNCHPAD_COLOR": "PURPLE",
     "LAUNCHPAD_ROW": "0"
   }

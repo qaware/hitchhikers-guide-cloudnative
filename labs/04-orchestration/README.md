@@ -16,7 +16,7 @@ The resulting JSON file might look something like the following:
 
 ```json
 {
-  "id": "zwitscher-service",
+  "id": "zwitscher-service-hitchhikersguide",
 
   "instances": 1,
   "cpus": 0.5,
