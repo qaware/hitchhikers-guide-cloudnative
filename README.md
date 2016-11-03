@@ -3,7 +3,7 @@
 ## Prerequisites
  * Notebook with at least 8 GB RAM
  * Windows 10, Mac OS X / macOS, Linux
- * Current Vagrant version installed (1.8.1 or later)
+ * Git Client and GitHub account
  * Current VirtualBox version installed (5.0.26 or later)
  * Current Docker Toolbox version installed (1.12.x or later)
  * Latest version of JDK 8
@@ -53,7 +53,7 @@
 ### Practice
  * Writing Marathon specification
  * Deploy to DC/OS cluster with CLI (incl. setup CLI) and from Gradle
- 
+
 ## Module 5: Explore  ([slides](slides/05-summary.pptx))
  * Sneak preview of other platforms like Kubernetes, OpenShift, Kontena and Gestalt
  * Play hard with the other platforms - how to get started
