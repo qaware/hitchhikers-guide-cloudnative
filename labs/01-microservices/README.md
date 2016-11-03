@@ -64,7 +64,7 @@ public class ZwitscherRepositoryImpl implements ZwitscherRepository {
         SearchResults results = twitter.searchOperations().search(q, pageSize);
         return results.getTweets().stream()
                 .map(Tweet::getUnmodifiedText)
-                .collect(toList());
+                .collect(toSet());
     }
 }
 ```
