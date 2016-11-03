@@ -106,6 +106,28 @@ behaviour of the configuration mechanism:
 * Store properties in Consul as blob using a property syntax, opposed to having a
   key-value pair per property.
 
+The `bootstrap.properties` file should now look something like this:
+
+```
+spring.application.name=zwitscher-service
+
+# specify Consul host and port
+spring.cloud.consul.host=${consul.host:192.168.99.100}
+spring.cloud.consul.port=${consul.port:8500}
+
+spring.cloud.consul.config.enabled=true
+spring.cloud.consul.config.prefix=configuration
+spring.cloud.consul.config.default-context=application
+
+# do not fail at startup if Consul is not there
+spring.cloud.consul.config.fail-fast=false
+
+# store properties as blob in property syntax
+# e.g. configuration/zwitscher-service/data
+spring.cloud.consul.config.format=properties
+spring.cloud.consul.config.data-key=data
+```
+
 Use the Consul UI and create a new key/value entry for the key `configuration/zwitscher-service/data`
 that contains the following data:
 
