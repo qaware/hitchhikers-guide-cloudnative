@@ -201,9 +201,11 @@ Furthermore, we can customize how Traefik will route the incoming requests to th
 specifying additional tags during service registration. This is done via the `application.properties`.
 
 ```
-spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=Path:/tweets,traefik.tags=api
+spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/zwitscher-service,traefik.tags=api
 ```
 
+At this point you should now be able to get tweets via the edge server using a command
+like `curl 192.168.99.100/zwitscher-service/tweets`.
 
 ## Step 04: Write a Docker Compose file
 
