@@ -65,7 +65,7 @@ public class ZwitscherRepositoryImpl implements ZwitscherRepository {
         SearchResults results = twitter.searchOperations().search(q, pageSize);
         return results.getTweets().stream()
                 .map(Tweet::getUnmodifiedText)
-                .collect(toList());
+                .collect(toSet());
     }
 }
 ```
@@ -106,13 +106,14 @@ We also want to specify a fallback method in case the call takes too long.
 
 ```java
 @Override
-@HystrixCommand(fallbackMethod = "noResults")
-@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+@HystrixCommand(fallbackMethod = "noResults", commandProperties = {
+    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+})
 public Collection<String> search(String q, int pageSize) {
     SearchResults results = twitter.searchOperations().search(q, pageSize);
     return results.getTweets().stream()
             .map(Tweet::getUnmodifiedText)
-            .collect(toList());
+            .collect(toSet());
 }
 
 @SuppressWarnings("unused")
