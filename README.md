@@ -55,7 +55,7 @@
  * Deploy to DC/OS cluster with CLI (incl. setup CLI) and from Gradle
 
 ## Module 5: Explore  ([slides](slides/05-summary.pptx))
- * Sneak preview of other platforms like Kubernetes, OpenShift, Kontena and Gestalt
+ * Sneak preview of other platforms like Kubernetes, OpenShift and Kontena
  * Play hard with the other platforms - how to get started
 
 ## License
