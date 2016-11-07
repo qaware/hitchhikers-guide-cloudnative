@@ -1,16 +1,15 @@
 <img src="https://raw.githubusercontent.com/qaware/hitchhikers-guide-cloudnative/master/logo.png" width="600px">
 
 ## Prerequisites
- * Notebook with at least 8 GB RAM
- * Windows 10, Mac OS X / macOS, Linux
- * Git Client and GitHub account
- * Current VirtualBox version installed (5.0.26 or later)
- * Current Docker Toolbox version installed (1.12.x or later)
- * Latest version of JDK 8
- * Latest version of IntelliJ (trial version is OK)
+ * Notebook with at least 8 GB RAM and Windows 10, macOS, Linux operating system
+ * Git Client like [git command line client](https://git-scm.com/download) or [github Desktop](https://desktop.github.com)
+ * Current [VirtualBox](https://www.virtualbox.org/wiki/Downloads) version installed (5.0.26 or later)
+ * Current [Docker Toolbox](https://www.docker.com/products/docker-toolbox) version installed (1.12.x or later) or if you're on a Linux OS plain [Docker Machine](https://docs.docker.com/machine/install-machine)
+ * Latest version of [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads)
+ * Latest version of [IntelliJ](https://www.jetbrains.com/idea/download) Ultimate (trial version is OK)
  * Keepass tool to access the [credentials](accounts.kdbx) used in the labs: [Win](http://keepass.info), [macOS](http://mstarke.github.io/MacPass), [Linux](http://keepass.info/help/v2/setup.html#mono)
- * (optional) Account for Docker Hub
- * Consider to attend our [Cloud Native Night Meetup](https://www.meetup.com/de-DE/cloud-native-muc/events/234936523/)
+ * (optional) Account for [github](https://github.com/join?source=header) and [DockerHub](https://hub.docker.com)
+ * Consider to attend our [Cloud Native Night Meetup](https://www.meetup.com/de-DE/cloud-native-muc/events/234936523)
 
 ## Module 0: Introduction ([slides](slides/00-intro.pptx))
 
