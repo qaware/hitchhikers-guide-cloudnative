@@ -10,7 +10,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "hitchhikersguide/zwitscher-service:1.0.1",
+      "image": "lreimer/zwitscher-service:1.0.1",
       "network": "BRIDGE",
       "portMappings": [
         {
