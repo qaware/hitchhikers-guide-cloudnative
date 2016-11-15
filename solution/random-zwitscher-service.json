@@ -6,7 +6,7 @@
     "instances": 3,
 
     "uris": [
-        "https://github.com/qaware/hitchhikers-guide-cloudnative/raw/master/random-zwitscher-service.tgz"
+        "https://github.com/qaware/hitchhikers-guide-cloudnative/raw/master/solution/random-zwitscher-service.tar.gz"
     ],
 
     "labels": {
