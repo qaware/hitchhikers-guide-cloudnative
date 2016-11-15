@@ -1,0 +1,13 @@
+{
+    "id": "hello-world-0",
+    "cmd": "while [ true ] ; do echo 'Hello Marathon' ; sleep 5 ; done",
+    "cpus": 0.5,
+    "mem": 10.0,
+    "instances": 1,
+
+    "labels": {
+      "LAUNCHPAD_ENABLE": "true",
+      "LAUNCHPAD_COLOR": "LIGHT_BLUE",
+      "LAUNCHPAD_ROW": "7"
+    }
+}
