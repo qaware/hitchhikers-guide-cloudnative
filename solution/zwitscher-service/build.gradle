@@ -91,15 +91,3 @@ task startConsul(type: Exec, group: 'application', description: 'Start Consul co
 task stopConsul(type: Exec, group: 'application', description: 'Stop Consul container') {
     commandLine 'docker', 'stop', 'zwitscher-consul'
 }
-
-deployer {
-    marathon {
-        id = "marathon-zwitscher-service"
-        baseUrl = "http://147.75.100.195"
-        strategy = "REPLACE"
-        auth {
-            token = dcosAuthToken()
-        }
-        files = [file("../marathon-zwitscher-service.json")]
-    }
-}
