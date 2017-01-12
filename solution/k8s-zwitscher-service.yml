@@ -23,9 +23,9 @@ spec:
     metadata:
       labels:
         zwitscher: service
-        LAUNCHPAD_ENABLE: true
+        LAUNCHPAD_ENABLE: "true"
         LAUNCHPAD_COLOR: LIGHT_GREEN
-        LAUNCHPAD_ROW: 1
+        LAUNCHPAD_ROW: "1"
     spec:
       containers:
       - name: zwitscher-service
