@@ -23,9 +23,6 @@ spec:
     metadata:
       labels:
         zwitscher: service
-        LAUNCHPAD_ENABLE: "true"
-        LAUNCHPAD_COLOR: LIGHT_GREEN
-        LAUNCHPAD_ROW: "1"
     spec:
       containers:
       - name: zwitscher-service
@@ -51,5 +48,7 @@ spec:
             port: 8080
           timeoutSeconds: 30
         env:
-        - name: CONSUL_HOST
-          value: zwitscher-consul
+        - name: TWITTER_APP_ID
+          value: twitter-api-app-id-token
+        - name: TWITTER_APP_SECRET
+          value: twitter-api-app-secret-token
