@@ -10,6 +10,9 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
+    name: edge
+  - port: 8888
+    name: web
   selector:
     zwitscher: traefik
 ---
