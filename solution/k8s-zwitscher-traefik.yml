@@ -27,6 +27,9 @@ spec:
     metadata:
       labels:
         zwitscher: traefik
+        LAUNCHPAD_ENABLE: "true"
+        LAUNCHPAD_COLOR: RED
+        LAUNCHPAD_ROW: "2"
     spec:
       containers:
       - name: zwitscher-traefik

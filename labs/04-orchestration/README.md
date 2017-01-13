@@ -29,7 +29,7 @@ The resulting JSON file might look something like the following:
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "hitchhikersguide/zwitscher-service:1.0.1",
+      "image": "hitchhikersguide/zwitscher-service:1.1.0",
       "network": "BRIDGE",
       "portMappings": [
         {

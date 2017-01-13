@@ -23,10 +23,13 @@ spec:
     metadata:
       labels:
         zwitscher: service
+        LAUNCHPAD_ENABLE: "true"
+        LAUNCHPAD_COLOR: LIGHT_GREEN
+        LAUNCHPAD_ROW: "1"
     spec:
       containers:
       - name: zwitscher-service
-        image: "hitchhikersguide/zwitscher-service:1.0.1"
+        image: "lreimer/zwitscher-service:1.1.0"
         resources:
           requests:
             memory: "128Mi"
@@ -48,7 +51,5 @@ spec:
             port: 8080
           timeoutSeconds: 30
         env:
-        - name: TWITTER_APP_ID
-          value: twitter-api-app-id-token
-        - name: TWITTER_APP_SECRET
-          value: twitter-api-app-secret-token
+        - name: CONSUL_HOST
+          value: zwitscher-consul

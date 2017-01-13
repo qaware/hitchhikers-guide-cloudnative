@@ -23,6 +23,9 @@ spec:
     metadata:
       labels:
         zwitscher: consul
+        LAUNCHPAD_ENABLE: "true"
+        LAUNCHPAD_COLOR: PURPLE
+        LAUNCHPAD_ROW: "0"
     spec:
       containers:
       - name: zwitscher-consul

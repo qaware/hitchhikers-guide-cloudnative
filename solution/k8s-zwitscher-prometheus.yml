@@ -22,6 +22,9 @@ spec:
     metadata:
       labels:
         zwitscher: prometheus
+        LAUNCHPAD_ENABLE: "true"
+        LAUNCHPAD_COLOR: ORANGE
+        LAUNCHPAD_ROW: "3"
     spec:
       containers:
       - name: zwitscher-prometheus
@@ -51,4 +54,3 @@ spec:
             # for docker-toolbox, this means a location on the
             # virtual machine that the docker host runs on!
             path: /c/Users/USERNAME/prometheus-config
-

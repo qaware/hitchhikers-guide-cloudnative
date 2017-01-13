@@ -19,7 +19,7 @@ apply plugin: 'com.bmuschko.docker-remote-api'
 apply plugin: 'idea'
 apply plugin: 'de.qaware.cloud.deployer'
 
-version = '1.0.1'
+version = '1.1.0'
 
 jar {
     baseName = 'zwitscher-service'
@@ -35,6 +35,7 @@ repositories {
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-hateoas'
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
 
     compile 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
@@ -42,6 +43,11 @@ dependencies {
 
     compile 'org.springframework.boot:spring-boot-starter-social-twitter'
     compile 'org.springframework.boot:spring-boot-starter-web'
+
+    compile 'io.prometheus:simpleclient:0.0.19'
+    compile 'io.prometheus:simpleclient_common:0.0.19'
+    compile 'io.prometheus:simpleclient_spring_boot:0.0.19'
+    compile 'io.prometheus:simpleclient_servlet:0.0.19'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
