@@ -14,21 +14,30 @@ global:
       monitor: 'zwitscher-monitor'
   
 scrape_configs:
-  - job_name: 'consul'
+  - job_name: 'zwitscher-service'
 
     consul_sd_configs:
     - server: zwitscher-consul:8500
 
     relabel_configs:
+
+    #Keep only the zwitscher-service endpoints
     - source_labels: ['__meta_consul_service']
-      regex:         '(.*)'
+      regex:         '(.*zwitscher-service.*)'
+      action:        'keep'
+
+    #Use the service name as job name
+    - source_labels: ['__meta_consul_service']
       target_label:  'job'
-      replacement:   '$1'
-    - source_labels: ['__meta_consul_node']
+
+    #Use service instance id as instance name
+    - source_labels: ['__meta_consul_service_id']
       regex:         '(.*)'
       target_label:  'instance'
       replacement:   '$1'
-    - source_labels: ['__meta_consul_tags']
-      regex:         ',(production|canary),'
-      target_label:  'group'
-      replacement:   '$1'
+
+    #Use the specified path as metrics target
+    - source_labels: ['__metrics_path__']
+      regex:         '(.*)'
+      target_label:  '__metrics_path__'
+      replacement:   '/tweets'
