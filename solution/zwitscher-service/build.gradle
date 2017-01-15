@@ -35,6 +35,7 @@ repositories {
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
 
     compile 'org.springframework.boot:spring-boot-starter-social-twitter'
     compile 'org.springframework.boot:spring-boot-starter-web'
