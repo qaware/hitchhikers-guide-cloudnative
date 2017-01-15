@@ -50,5 +50,5 @@ spec:
             # directory location on host
             # for docker-toolbox, this means a location on the
             # virtual machine that the docker host runs on!
-            path: /c/Users/USERNAME/prometheus-config
+            path: prometheus-config
 
