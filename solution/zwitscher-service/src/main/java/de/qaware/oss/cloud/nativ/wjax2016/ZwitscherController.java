@@ -35,7 +35,7 @@ public class ZwitscherController {
         return new ResponseEntity<>(tweets, HttpStatus.OK);
     }
 
-    @Value("${tweet.query:cloudnativenerd}")
+    @Value("${tweet.query:cloudnative}")
     public void setQuery(String query) {
         this.query = query;
     }
