@@ -34,18 +34,9 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
-    compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
-
-    compile 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
-    compile 'org.springframework.cloud:spring-cloud-starter-consul-config'
 
     compile 'org.springframework.boot:spring-boot-starter-social-twitter'
     compile 'org.springframework.boot:spring-boot-starter-web'
-
-    compile 'io.prometheus:simpleclient:0.0.19'
-    compile 'io.prometheus:simpleclient_common:0.0.19'
-    compile 'io.prometheus:simpleclient_spring_boot:0.0.19'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -58,40 +49,4 @@ dependencyManagement {
 
 springBoot {
     executable = true
-}
-
-docker {
-    url = System.env.DOCKER_HOST?.replace('tcp', 'https') ?: 'https://192.168.99.100:2376'
-    certPath = file("${System.getProperty('user.home')}/.docker/machine/machines/default")
-}
-
-import com.bmuschko.gradle.docker.tasks.DockerInfo
-import com.bmuschko.gradle.docker.tasks.DockerVersion
-import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
-import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
-
-task dockerInfo(type: DockerInfo, description: 'Display Docker info') {}
-task dockerVersion(type: DockerVersion, description: 'Display Docker version') {}
-
-task buildDockerImage(type: DockerBuildImage, description: 'Build Docker image') {
-    inputDir = projectDir
-    noCache = false
-    remove = true
-    tag = "$project.name:$version-${System.env['USER']}"
-}
-
-task removeDockerImage(type: DockerRemoveImage, description: 'Remove Docker image') {
-    imageId = "$project.name:$version-${System.env['USER']}"
-}
-
-task createConsul(type: Exec, group: 'application', description: 'Create Consul container') {
-    commandLine 'docker', 'run', '-d', '--name', 'zwitscher-consul', '-p', '8400:8400', '-p', '8500:8500', 'consul'
-}
-
-task startConsul(type: Exec, group: 'application', description: 'Start Consul container') {
-    commandLine 'docker', 'start', 'zwitscher-consul'
-}
-
-task stopConsul(type: Exec, group: 'application', description: 'Stop Consul container') {
-    commandLine 'docker', 'stop', 'zwitscher-consul'
 }

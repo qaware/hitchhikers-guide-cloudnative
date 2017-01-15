@@ -2,7 +2,6 @@ package de.qaware.oss.cloud.nativ.wjax2016;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,7 +17,6 @@ import java.util.Collection;
  */
 @RestController
 @RequestMapping("/tweets")
-@RefreshScope
 public class ZwitscherController {
 
     private final ZwitscherRepository repository;
