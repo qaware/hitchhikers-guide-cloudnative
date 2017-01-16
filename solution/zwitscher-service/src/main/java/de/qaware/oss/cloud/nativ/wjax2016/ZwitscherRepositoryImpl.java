@@ -28,7 +28,7 @@ public class ZwitscherRepositoryImpl implements ZwitscherRepository {
 
     @Override
     @HystrixCommand(commandKey = "GetTweets", fallbackMethod = "noResults", commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "200")
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
     })
 
     public Collection<String> search(String q, int pageSize) {
