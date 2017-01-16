@@ -5,17 +5,19 @@ metadata:
   labels:
     zwitscher: service
 spec:
-  # use NodePort here to be able to access this service 
-  # by a certain port on each node
+  # use NodePort here to be able to access the port on each node
   type: NodePort
-  # Füge den service port und einen label selector hinzu
+  ports:
+  - port: 8080
+  selector:
+    zwitscher: service
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: zwitscher-service
 spec:
-  replicas: 1
+  replicas: 3
   minReadySeconds: 30
   template:
     metadata:
@@ -24,18 +26,29 @@ spec:
     spec:
       containers:
       - name: zwitscher-service
-        # Definiere das zu verwendende image,
-        # den zu exposenden port, einen Ressourcenbedarf 
-        # von 128Mi Speicher und 250m CPU,
-        # sowie ein Ressourcenlimit 
-        # von 256Mi Speicher und 500m CPU
+        image: "hitchhikersguide/zwitscher-service:1.0.1"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
         livenessProbe:
-          #Get request auf /admin/health
+          httpGet:
+            path: /admin/health
+            port: 8080
           initialDelaySeconds: 90
           timeoutSeconds: 30
         readinessProbe:
-          #Get request auf /admin/info
+          httpGet:
+            path: /admin/info
+            port: 8080
           timeoutSeconds: 30
         env:
-        # Definiere die Umgebungsvariablen 
-        # TWITTER_APP_ID und TWITTER_APP_SECRET
+        - name: TWITTER_APP_ID
+          value: twitter-api-app-id-token
+        - name: TWITTER_APP_SECRET
+          value: twitter-api-app-secret-token
