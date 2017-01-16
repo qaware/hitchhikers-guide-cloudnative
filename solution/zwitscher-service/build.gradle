@@ -52,3 +52,27 @@ dependencyManagement {
 springBoot {
     executable = true
 }
+
+docker {
+    url = System.env.DOCKER_HOST?.replace('tcp', 'https') ?: 'https://192.168.99.100:2376'
+    certPath = file("${System.getProperty('user.home')}/.docker/machine/machines/default")
+}
+
+import com.bmuschko.gradle.docker.tasks.DockerInfo
+import com.bmuschko.gradle.docker.tasks.DockerVersion
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerRemoveImage
+
+task dockerInfo(type: DockerInfo, description: 'Display Docker info') {}
+task dockerVersion(type: DockerVersion, description: 'Display Docker version') {}
+
+task buildDockerImage(type: DockerBuildImage, description: 'Build Docker image') {
+    inputDir = projectDir
+    noCache = false
+    remove = true
+    tag = "$project.name:$version"
+}
+
+task removeDockerImage(type: DockerRemoveImage, description: 'Remove Docker image') {
+    imageId = "$project.name:$version-${System.env['USER']}"
+}
