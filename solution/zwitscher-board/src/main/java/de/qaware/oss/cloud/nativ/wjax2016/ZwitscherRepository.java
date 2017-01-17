@@ -1,6 +1,7 @@
 package de.qaware.oss.cloud.nativ.wjax2016;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,9 @@ public class ZwitscherRepository {
      * @param q the query, max 500 chars long
      * @return the tweets, never NULL
      */
-    @HystrixCommand(fallbackMethod = "none")
+    @HystrixCommand(commandKey = "FindByQ", fallbackMethod = "none", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+    })
     public Collection<String> findByQ(final @Length(max = 500) String q) {
         log.info("Get Zwitscher message from /tweets using q={}.", q);
 
