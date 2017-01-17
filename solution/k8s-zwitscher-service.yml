@@ -52,3 +52,5 @@ spec:
           value: twitter-api-app-id-token
         - name: TWITTER_APP_SECRET
           value: twitter-api-app-secret-token
+        - name: CONSUL_HOST
+          value: zwitscher-consul
