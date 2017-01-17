@@ -17,10 +17,12 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-@EnablePrometheusEndpoint
-@EnableSpringBootMetricsCollector
 @EnableFeignClients
 @RibbonClient(name = "zwitscher-service")
+// there seems to be a NPE bug in the feign or ribbon implementation
+// so we disable the prometheus endpoints and metrics
+// @EnablePrometheusEndpoint
+// @EnableSpringBootMetricsCollector
 public class ZwitscherBoardApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZwitscherBoardApplication.class, args);
