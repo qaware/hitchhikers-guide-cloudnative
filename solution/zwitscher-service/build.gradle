@@ -43,6 +43,10 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-social-twitter'
     compile 'org.springframework.boot:spring-boot-starter-web'
 
+    compile 'io.prometheus:simpleclient:0.0.19'
+    compile 'io.prometheus:simpleclient_common:0.0.19'
+    compile 'io.prometheus:simpleclient_spring_boot:0.0.19'
+
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
