@@ -15,4 +15,4 @@ spec:
   replicas: 1
   minReadySeconds: 30
   template:
-    # Vervollstaendige das Pod-Template
+    # Vervollständige das Pod-Template
