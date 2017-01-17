@@ -9,9 +9,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+
+import static java.util.Optional.ofNullable;
 
 /**
  * Basic Spring based REST controller for Zwitscher service.
@@ -32,8 +35,8 @@ public class ZwitscherController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public HttpEntity<Collection<String>> tweets() {
-        Collection<String> tweets = repository.search(query, pageSize);
+    public HttpEntity<Collection<String>> tweets(@RequestParam(value = "q", required = false) String q) {
+        Collection<String> tweets = repository.search(ofNullable(q).orElse(query), pageSize);
         return new ResponseEntity<>(tweets, HttpStatus.OK);
     }
 
