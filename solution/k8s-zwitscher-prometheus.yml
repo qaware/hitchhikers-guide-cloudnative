@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwitscher-prometheus
+  labels:
+    zwitscher: prometheus
+spec:
+  type: NodePort
+  ports:
+  - port: 9090
+  selector:
+    zwitscher: prometheus
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zwitscher-prometheus
+spec:
+  replicas: 1
+  minReadySeconds: 30
+  template:
+    # Pod Spec vervollständigen
+
