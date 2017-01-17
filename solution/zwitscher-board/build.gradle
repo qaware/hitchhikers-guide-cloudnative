@@ -34,13 +34,21 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-hateoas'
-    compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
 
     compile 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
     compile 'org.springframework.cloud:spring-cloud-starter-consul-config'
 
-    compile 'org.springframework.boot:spring-boot-starter-social-twitter'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    compile 'org.springframework.retry:spring-retry'
+
+    compile 'org.springframework.cloud:spring-cloud-starter-feign'
+    compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
+    compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
+
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile 'org.springframework.boot:spring-boot-starter-web'
+
+    compile 'org.projectlombok:lombok:1.16.6'
 
     compile 'io.prometheus:simpleclient:0.0.19'
     compile 'io.prometheus:simpleclient_common:0.0.19'

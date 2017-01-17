@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <!--/*@thymesVar id="title" type="java.lang.String"*/-->
+    <title th:text="${title}"></title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<!--/*@thymesVar id="title" type="java.lang.String"*/-->
+<h1 th:text="${title}"></h1>
+
+<h1>Zwitscher Messages on Topic</h1>
+
+<form action="/search" method="get">
+    <input type="text" name="q"/>
+    <input type="submit"/>
+</form>
+
+<table>
+    <!--/*@thymesVar id="tweets" type="java.util.Collection<java.lang.String>"*/-->
+    <tr th:each="tweet : ${tweets}">
+        <td th:text="${tweet}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
