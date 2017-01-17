@@ -5,7 +5,12 @@ metadata:
   labels:
     zwitscher: traefik
 spec:
-  # Vervollständige die Service Spec
+  type: LoadBalancer
+  ports:
+  - port: 80
+    name: edge
+  - port: 8888
+    name: web
   selector:
     zwitscher: traefik
 ---
