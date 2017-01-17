@@ -48,9 +48,5 @@ spec:
             port: 8080
           timeoutSeconds: 30
         env:
-        - name: TWITTER_APP_ID
-          value: twitter-api-app-id-token
-        - name: TWITTER_APP_SECRET
-          value: twitter-api-app-secret-token
-        - name: CONSUL_HOST
-          value: zwitscher-consul
+          - name: CONSUL_HOST
+            value: zwitscher-consul
