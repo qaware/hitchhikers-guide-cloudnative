@@ -5,7 +5,12 @@ metadata:
   labels:
     zwitscher: consul
 spec:
-  # Vervollständige die ServiceSpe
+  # use NodePort here to be able to access the port on each node
+  type: NodePort
+  ports:
+  - port: 8500
+  selector:
+    zwitscher: consul
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -15,4 +20,35 @@ spec:
   replicas: 1
   minReadySeconds: 30
   template:
-    # Vervollständige das Pod-Template
+    metadata:
+      labels:
+        zwitscher: consul
+    spec:
+      containers:
+      - name: zwitscher-consul
+        image: "consul"
+        command: ["consul"]
+        args: ["agent", "-server", "-ui", "-data-dir=/tmp/consul", "-bootstrap-expect=1", "-node=consul-server", "-client=0.0.0.0"]
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8500
+        livenessProbe:
+          httpGet:
+            path: /v1/status/leader
+            port: 8500
+          initialDelaySeconds: 60
+          timeoutSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /v1/status/leader
+            port: 8500
+          timeoutSeconds: 30
+        env:
+        - name: GOMAXPROCS
+          value: "10"
