@@ -21,7 +21,7 @@ public class ZwitscherControllerTest {
 
         when(repository.search("cloudnativenerd", 42)).thenReturn(Collections.singleton("Hello Test."));
 
-        HttpEntity<Collection<String>> tweets = controller.tweets();
+        HttpEntity<Collection<String>> tweets = controller.tweets(null);
         assertFalse(tweets.getBody().isEmpty());
     }
 
