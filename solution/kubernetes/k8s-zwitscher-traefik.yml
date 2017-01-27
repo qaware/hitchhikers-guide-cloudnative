@@ -20,6 +20,11 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: zwitscher-traefik
+  labels:
+    zwitscher: traefik
+    LAUNCHPAD_ENABLE: "true"
+    LAUNCHPAD_COLOR: RED
+    LAUNCHPAD_ROW: "2"
 spec:
   replicas: 1
   minReadySeconds: 30
@@ -27,9 +32,6 @@ spec:
     metadata:
       labels:
         zwitscher: traefik
-        LAUNCHPAD_ENABLE: "true"
-        LAUNCHPAD_COLOR: RED
-        LAUNCHPAD_ROW: "2"
     spec:
       containers:
       - name: zwitscher-traefik

@@ -15,6 +15,11 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: zwitscher-prometheus
+  labels:
+    zwitscher: prometheus
+    LAUNCHPAD_ENABLE: "true"
+    LAUNCHPAD_COLOR: ORANGE
+    LAUNCHPAD_ROW: "3"
 spec:
   replicas: 1
   minReadySeconds: 30
@@ -22,9 +27,6 @@ spec:
     metadata:
       labels:
         zwitscher: prometheus
-        LAUNCHPAD_ENABLE: "true"
-        LAUNCHPAD_COLOR: ORANGE
-        LAUNCHPAD_ROW: "3"
     spec:
       containers:
       - name: zwitscher-prometheus
