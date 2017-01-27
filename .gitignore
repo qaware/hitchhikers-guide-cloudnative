@@ -16,4 +16,6 @@ build/
 *.DS_Store
 
 kubernetes.tar.gz
-kubernetes/
+
+kubernetes/*
+!solution/kubernetes/
