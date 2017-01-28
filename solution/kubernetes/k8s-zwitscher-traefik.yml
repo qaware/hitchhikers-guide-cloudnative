@@ -7,7 +7,7 @@ metadata:
 spec:
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service. Does not work locally.
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 80
     name: edge
@@ -22,9 +22,11 @@ metadata:
   name: zwitscher-traefik
   labels:
     zwitscher: traefik
+    cloudcontrol.enabled: "true"
+    cloudcontrol.index: "6"
     LAUNCHPAD_ENABLE: "true"
     LAUNCHPAD_COLOR: RED
-    LAUNCHPAD_ROW: "2"
+    LAUNCHPAD_ROW: "3"
 spec:
   replicas: 1
   minReadySeconds: 30
@@ -61,3 +63,27 @@ spec:
             path: /health
             port: 8888
           timeoutSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    zwitscher: traefik
+  name: zwitscher-traefik
+  namespace: default
+spec:
+  backend:
+    serviceName: zwitscher-traefik
+    servicePort: 8888
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    zwitscher: traefik
+  name: zwitscher-edge
+  namespace: default
+spec:
+  backend:
+    serviceName: zwitscher-traefik
+    servicePort: 80
