@@ -33,7 +33,8 @@ spec:
     spec:
       containers:
       - name: zwitscher-service
-        image: "lreimer/zwitscher-service:1.1.0"
+        image: "hitchhikersguide/zwitscher-service:1.1.0"
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "128Mi"
