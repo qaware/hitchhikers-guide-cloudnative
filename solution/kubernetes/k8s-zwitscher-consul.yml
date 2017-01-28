@@ -18,7 +18,9 @@ metadata:
   name: zwitscher-consul
   labels:
     zwitscher: consul
-    LAUNCHPAD_ENABLE: "true"
+    cloudcontrol.enabled: "false"
+    cloudcontrol.index: "3"
+    LAUNCHPAD_ENABLE: "false"
     LAUNCHPAD_COLOR: PURPLE
     LAUNCHPAD_ROW: "0"
 spec:
@@ -57,3 +59,15 @@ spec:
         env:
         - name: GOMAXPROCS
           value: "10"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    zwitscher: consul
+  name: zwitscher-consul
+  namespace: default
+spec:
+  backend:
+    serviceName: zwitscher-consul
+    servicePort: 8500
