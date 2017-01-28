@@ -25,6 +25,12 @@ metadata:
     LAUNCHPAD_ROW: "6"
 spec:
   replicas: 3
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 1
   template:
     metadata:
       labels:
@@ -35,6 +41,17 @@ spec:
         image: nginx:1.7.9
         ports:
         - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          timeoutSeconds: 10
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress

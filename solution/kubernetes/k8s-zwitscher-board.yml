@@ -24,8 +24,8 @@ metadata:
     LAUNCHPAD_COLOR: LIGHT_BLUE
     LAUNCHPAD_ROW: "2"
 spec:
-  replicas: 1
-  minReadySeconds: 30
+  replicas: 2
+  minReadySeconds: 10
   template:
     metadata:
       labels:
