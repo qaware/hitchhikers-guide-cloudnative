@@ -33,7 +33,8 @@ spec:
     spec:
       containers:
       - name: zwitscher-board
-        image: "lreimer/zwitscher-board:1.0.0"
+        image: "hitchhikersguide/zwitscher-board:1.0.0"
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "128Mi"
