@@ -18,6 +18,8 @@ metadata:
   name: zwitscher-service
   labels:
     zwitscher: service
+    cloudcontrol.enabled: "true"
+    cloudcontrol.index: "4"
     LAUNCHPAD_ENABLE: "true"
     LAUNCHPAD_COLOR: LIGHT_GREEN
     LAUNCHPAD_ROW: "1"
@@ -31,7 +33,7 @@ spec:
     spec:
       containers:
       - name: zwitscher-service
-        image: "lreimer/zwitscher-service:1.1.0"
+        image: "lreimer/zwitscher-service:1.0.1"
         resources:
           requests:
             memory: "128Mi"
@@ -55,3 +57,15 @@ spec:
         env:
         - name: CONSUL_HOST
           value: zwitscher-consul
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    zwitscher: service
+  name: zwitscher-service
+  namespace: default
+spec:
+  backend:
+    serviceName: zwitscher-service
+    servicePort: 8080
