@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: zwitscher-service
-        image: "hitchhikersguide/zwitscher-service:1.0.1"
+        image: "zwitscher-service:1.0.1"
         resources:
           requests:
             memory: "128Mi"
