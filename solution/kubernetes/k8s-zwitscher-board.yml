@@ -26,6 +26,12 @@ metadata:
 spec:
   replicas: 2
   minReadySeconds: 10
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 1
   template:
     metadata:
       labels:
@@ -33,14 +39,14 @@ spec:
     spec:
       containers:
       - name: zwitscher-board
-        image: "hitchhikersguide/zwitscher-board:1.0.0"
+        image: "hitchhikersguide/zwitscher-board:1.0.1"
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "128Mi"
+            memory: "196Mi"
             cpu: "250m"
           limits:
-            memory: "256Mi"
+            memory: "324Mi"
             cpu: "500m"
         ports:
         - containerPort: 8081

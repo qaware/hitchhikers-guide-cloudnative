@@ -17,7 +17,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'com.bmuschko.docker-remote-api'
 apply plugin: 'idea'
 
-version = '1.0.0'
+version = '1.0.1'
 
 jar {
     baseName = 'zwitscher-board'
