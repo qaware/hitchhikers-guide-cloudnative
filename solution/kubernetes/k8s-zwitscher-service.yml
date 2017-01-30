@@ -27,6 +27,11 @@ spec:
   replicas: 2
   minReadySeconds: 10
   revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 1
   template:
     metadata:
       labels:
