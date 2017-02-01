@@ -9,6 +9,7 @@ services:
       - "8500:8500"
     networks:
       - zwitscher-net
+
   zwitscher-traefik:
     image: traefik
     volumes:
@@ -22,8 +23,9 @@ services:
       - zwitscher-consul
     networks:
       - zwitscher-net
+
   zwitscher-service:
-    image: zwitscher-service:1.1.0-${USER}
+    image: zwitscher-service:1.1.1
     environment:
       - CONSUL_HOST=zwitscher-consul
       - CONSUL_PORT=8500
@@ -35,6 +37,20 @@ services:
       - zwitscher-consul
     ports:
       - "8080:8080"
+    networks:
+      - zwitscher-net
+
+  zwitscher-board:
+    image: zwitscher-board:1.0.1
+    environment:
+      - CONSUL_HOST=zwitscher-consul
+      - CONSUL_PORT=8500
+    depends_on:
+      - zwitscher-consul
+    links:
+      - zwitscher-consul
+    ports:
+      - "8081:8081"
     networks:
       - zwitscher-net
 

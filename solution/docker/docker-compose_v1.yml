@@ -18,8 +18,8 @@ traefik:
     - "8888:8888"
     - "80:80"
 
-zwitscher:
-  image: "zwitscher-service:1.1.0-${USER}"
+zwitscher-service:
+  image: "zwitscher-service:1.1.1"
   hostname: zwitscher-service
   environment:
     CONSUL_HOST: "zwitscher-consul"
@@ -30,3 +30,14 @@ zwitscher:
     - consul
   ports:
     - "8080:8080"
+
+zwitscher-board:
+  image: "zwitscher-board:1.0.1"
+  hostname: zwitscher-board
+  environment:
+    CONSUL_HOST: "zwitscher-consul"
+    CONSUL_PORT: 8500
+  links:
+    - consul
+  ports:
+    - "8081:8081"
