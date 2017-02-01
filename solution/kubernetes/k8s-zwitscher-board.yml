@@ -24,7 +24,7 @@ metadata:
     LAUNCHPAD_COLOR: LIGHT_BLUE
     LAUNCHPAD_ROW: "2"
 spec:
-  replicas: 2
+  replicas: 1
   minReadySeconds: 10
   revisionHistoryLimit: 5
   strategy:
@@ -40,7 +40,7 @@ spec:
       containers:
       - name: zwitscher-board
         image: "zwitscher-board:1.0.1"
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
         resources:
           requests:
             memory: "196Mi"

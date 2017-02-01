@@ -54,6 +54,6 @@ public class ZwitscherRepository {
     @SuppressWarnings("unused")
     protected Collection<String> none(final String q) {
         log.warn("Using fallback for Zwitscher messages.");
-        return Collections.emptyList();
+        return Collections.singletonList("Could not contact zwitscher-service");
     }
 }
