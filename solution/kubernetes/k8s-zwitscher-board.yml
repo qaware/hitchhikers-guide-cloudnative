@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: zwitscher-board
-        image: "hitchhikersguide/zwitscher-board:1.0.1"
+        image: "zwitscher-board:1.0.1"
         imagePullPolicy: Always
         resources:
           requests:
