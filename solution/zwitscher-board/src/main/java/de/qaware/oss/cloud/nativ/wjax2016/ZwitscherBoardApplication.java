@@ -19,8 +19,6 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 @EnableFeignClients
 @RibbonClient(name = "zwitscher-service")
-@EnablePrometheusEndpoint
-@EnableSpringBootMetricsCollector
 public class ZwitscherBoardApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZwitscherBoardApplication.class, args);
