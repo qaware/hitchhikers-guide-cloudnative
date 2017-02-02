@@ -64,6 +64,17 @@ spec:
         env:
         - name: CONSUL_HOST
           value: zwitscher-consul
+        - name: TWITTER_APP_ID
+          valueFrom:
+            secretKeyRef:
+              name: twitter-secret
+              key: api-key
+        - name: TWITTER_APP_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: twitter-secret
+              key: api-secret
+
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
