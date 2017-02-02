@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zwitscher-service
+data:
+  tweet.query: kubernetes
+  tweet.pageSize: "15"

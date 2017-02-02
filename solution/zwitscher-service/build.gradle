@@ -47,6 +47,9 @@ dependencies {
     compile 'io.prometheus:simpleclient_spring_boot:0.0.19'
     compile 'io.prometheus:simpleclient_servlet:0.0.19'
 
+    compile 'io.fabric8:spring-cloud-starter-kubernetes:0.1.4'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
