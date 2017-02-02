@@ -39,7 +39,7 @@ public class ZwitscherRepository {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
     })
     public Collection<String> findByQ(final @Length(max = 500) String q) {
-        log.info("Get Zwitscher message from /tweets using q={}.", q);
+        log.info("Get Zwitscher message from {} using q={}.", tweetsRibbonUrl, q);
 
         String[] tweets = restTemplate.getForObject(tweetsRibbonUrl, String[].class, q);
         return Arrays.asList(tweets);
