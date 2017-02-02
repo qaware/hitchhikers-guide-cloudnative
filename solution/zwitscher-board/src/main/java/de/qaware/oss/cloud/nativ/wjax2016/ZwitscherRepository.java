@@ -21,8 +21,7 @@ import java.util.Collections;
 @Slf4j
 public class ZwitscherRepository {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplate = new RestTemplate();
 
     @Value("${board.zwitscherUrl}")
     private String tweetsRibbonUrl;

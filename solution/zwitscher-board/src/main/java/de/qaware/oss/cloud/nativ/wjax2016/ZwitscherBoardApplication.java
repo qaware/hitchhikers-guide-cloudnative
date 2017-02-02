@@ -18,10 +18,5 @@ public class ZwitscherBoardApplication {
         SpringApplication.run(ZwitscherBoardApplication.class, args);
     }
 
-    @Bean
-    @LoadBalanced
-    public RestTemplate zwitscherServiceRestTemplate(SpringClientFactory clientFactory) {
-        RibbonClientHttpRequestFactory requestFactory = new RibbonClientHttpRequestFactory(clientFactory);
-        return new RestTemplate(requestFactory);
-    }
+
 }
