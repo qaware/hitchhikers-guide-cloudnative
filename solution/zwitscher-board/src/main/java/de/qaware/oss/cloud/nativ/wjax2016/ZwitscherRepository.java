@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,7 +22,6 @@ import java.util.Collections;
 public class ZwitscherRepository {
 
     @Autowired
-    @LoadBalanced
     private RestTemplate restTemplate;
 
     @Value("${board.zwitscherUrl}")
