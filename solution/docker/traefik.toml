@@ -29,7 +29,7 @@ address = ":8888"
 [consulCatalog]
 
 # Consul server endpoint
-endpoint = "192.168.99.100:8500"
+endpoint = "zwitscher-consul:8500"
 
 # Default domain used (Optional)
 domain = "consul.localhost"
@@ -134,4 +134,3 @@ prefix = "traefik"
 #
 # See: http://kubernetes.io/docs/user-guide/labels/#list-and-watch-filtering
 # labelselector = "A and not B"
-
