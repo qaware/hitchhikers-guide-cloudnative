@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: zwitscher-service
-        image: "zwitscher-service:1.1.1"
+        image: "zwitscher-service:2.1.2"
         #imagePullPolicy: Always
         resources:
           requests:
